@@ -13,66 +13,40 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="styles/main.css"
-  </head>
-  <body>
-    <h1>Weather Undergound Hack</h1>
 
-    <input type="text" id="getlocation" name="getLocation">
-    <button class="btn btn-primary" id= "locationBtn" >submit</button>
-    
-
-    <div class= "container">
-      <div class= "row">
-
-        <div class= "col.md.8">
-
-
+<!--       aeris weather links -->
      
-      <img class="map" src="http://api.wunderground.com/api/f317e2c831bee602/animatedradar/q/MI/Ann_Arbor.gif?newmaps=1&timelabel=1&timelabel.y=10&num=5&delay=50" />
-      <div id="test">
+  <script type="text/javascript" src="aeris.js"></script>
+  <script type="text/javascript" src="//cdn.aerisjs.com/aeris.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" src="http://cdn.aerisjs.com/aeris-gmaps-plus.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.2/leaflet.js"></script> 
 
-        </div>
-       </div>
-      </div>
-    </div>
+
+  <link rel="stylesheet" href="styles/main.css">
+  </head>
+
+
+  <body>
+    <h1>Aeris Weather Hack</h1>
+
+
+    <div id="map-canvas" style="height: 600px; width: 900px"></div>
+ 
   </body>
 </html>
 
 
-<script>
-$(document).ready(function(){
+<script type="text/javascript">
 
-  $("#locationBtn").click(function(){
-    alert("btn works");
-     var city = $("#getlocation").val();
-     console.log(city);
- 
-  $.ajax({
-
-      url: 'http://api.wunderground.com/api/f317e2c831bee602/feature/image.format?params',
-      feature: radar,
-      format: gif  
-  })
-
-  });
+aeris.config.set ({
+    apiId: 'b2gwaYBFtlhmTn7zR15pL',
+    apiSecret:  '07IT2b3WUu4693Dro38UcQ4oSoTti0cyfscacMah'
 });
 
- // $.ajax({
-  //     // params: '' ;
-  //     format: 'png',
-  //     url : "http://api.wunderground.com/api/f317e2c831bee602/forecast/q/zmw:94125.1.99999.json",
-  //     dataType : "jsonp",
-  //     success : function(parsed_json) {
-  //    for(i = 0; i<4; i ++){
-       
-  //       // console.log(parsed_json.forecast.simpleforecast.forecastday[i].high.fahrenheit);
-  //       var highs = parsed_json.forecast.simpleforecast.forecastday[i].high.fahrenheit;
-       
-  //       document.getElementById('test').innerHTML += highs; 
-  //       document.getElementById('test').innerHTML += '<br/>';
-  //        }
-  //      }
-  //   });
+
+  var map = new aeris.maps.Map('map-canvas');
+
+
 </script>
 
