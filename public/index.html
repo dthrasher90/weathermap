@@ -27,7 +27,7 @@
     <link media="screen" type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css">
     <script type="text/javascript" src="//cdn.aerisjs.com/aeris-interactive/aim-gmaps.js"></script>
 
-      <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="main.js"></script>
 
 
   <link rel="stylesheet" href="styles/main.css">
@@ -38,7 +38,7 @@
  
   <div class="cityform">
    <h1>Aeris Weather Hack</h1>
-    <input type="text" class="cityInput" placeholder="Salt Lake City, UT" id="city">
+    <input type="text" class="cityInput" id= "cityInput" placeholder="Salt Lake City, UT" id="city">
     <button class="btn btn-primary" id="btn"> GO</button>
   </div>
 
@@ -47,8 +47,10 @@
   <div class="container">
       <div class ="row">
           <div class="col-md-8"></div>
-              <!-- <div id="map-canvas" style="height: 600px; width: 60%"></div> -->
-               <div id="map-canvas" style="margin-left:auto; margin-right:auto; width:800px; height:500px"> </div>
+               <div id="map-canvas" style="width:800px; height:500px"> </div>
+          </div>
+          <div class="col-md-4"><
+
           </div>
       </div>
       
@@ -57,18 +59,38 @@
 
 
 <script type="text/javascript">
-     var aerisMapBuilder = new aeris.interactive.MapAppBuilder({
+var  clientId = 'b2gwaYBFtlhmTn7zR15pL';
+var  clientSecretId = '07IT2b3WUu4693Dro38UcQ4oSoTti0cyfscacMah';
+
+$(document).ready(function(){
+  $('#btn').click(function(){
+    var city = $('#cityInput').val();
+    console.log(city);
+       var forecastUrl = 'https://api.aerisapi.com/forecasts/'+city+'?&client_id=' + clientId + '&client_secret=' + clientSecretId;
+        $.getJSON(forecastUrl, function (data) {
+
+          
+            console.log(data);
+      
+          
+        });
+  });
+
+  console.log("ready!");
+});
+
+  var aerisMapBuilder = new aeris.interactive.MapAppBuilder({
         apiId: 'wgE96YE3scTQLKjnqiMsv',
         apiSecret: 'tlyy22v5uBRBcm8lWeP0Y6ZISPLDVKGWXTJH9kYb',
         el: '#map-canvas',
         modules: {
             map: {
               zoom: 6,
-              center: [39.32, -111.09],
+              center: [40.76, -111.89],
               scrollZoom: true,
             },
             geosearch: {
-              geolocate: true
+              geolocate: false
             },
             localWeather: {
               showOnInit: false
@@ -77,38 +99,12 @@
               expandOnInit: false
             }
           }
+
+
+  //end aeris map builder bracket
         });
     aerisMapBuilder.start();
     
-    // aerisMapBuilder
-    //     .start()
-    //     .done(function() {
-    //         console.log('Aeris Interactive Maps is initialized.');
-    //     })
-    //     .fail(function(err) {
-    //         console.error(err);
-    //     });
-
-
-
-
-
-
-// aeris.config.set ({
-//     apiId: 'b2gwaYBFtlhmTn7zR15pL',
-//     apiSecret:  '07IT2b3WUu4693Dro38UcQ4oSoTti0cyfscacMah'
-// });
-
-
-//   var map = new google.maps.Map('map-canvas',{
-//     mapTypeId: 'satellite'
-//   });
-//   var radarLayer = new aeris.maps.layers.Radar();
-//   radarLayer.setMap(map);
-
-
-//   var satellite = new aeris.maps.layers.Satellite() ;
-//   satellite.setMap(map);
 
 </script>
 
